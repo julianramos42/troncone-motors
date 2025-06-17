@@ -3,6 +3,7 @@ import { Router } from 'express';
 import validator from '../middlewares/validator';
 import carCreationSchema from '../schemas/createOneCar';
 // middlewares
+import passport from 'passport';
 import upload from '../middlewares/multer-uploads';
 // controllers
 import createOne from '../controllers/cars/createOne';
@@ -14,7 +15,7 @@ const router = Router();
 
 router.get('/:id', getOne);
 router.get('/', getAll);
-router.post('/create', upload, validator(carCreationSchema), createOne);
-router.delete('/:id', deleteOne);
+router.post('/create', passport.authenticate('jwt',{session:false}), upload, validator(carCreationSchema), createOne);
+router.delete('/:id', passport.authenticate('jwt',{session:false}), deleteOne);
 
 export default router;
