@@ -17,13 +17,13 @@ export default async function createOne(req: Request, res: Response, next: NextF
         if(user){
             return res.status(201).json({
                 success: true,
-                message: "Usuario creado correctamente."
+                message: "Usuario creado"
             })
         }
 
         return res.status(500).json({
                 success: false,
-                message: "Algo salio mal."
+                message: "Algo salio mal"
             })
     } catch (error) {
         next(error);

@@ -24,7 +24,7 @@ export default async function createOne(
 
         const files = req.files as Express.Multer.File[];
         if (!files || files.length === 0) {
-            return res.status(400).json({ message: "No se han subido imágenes." });
+            return res.status(400).json({ message: "No se han subido imágenes" });
         }
 
         const uploadPromises = files.map((file) => {
@@ -59,7 +59,7 @@ export default async function createOne(
         await CarModel.create(newCarData);
 
         res.status(201).json({
-            message: "Producto creado exitosamente",
+            message: "Producto creado"
         });
     } catch (err) {
         console.log(err);

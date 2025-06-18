@@ -16,7 +16,7 @@ export default async function getOne(req: Request, res: Response, next: NextFunc
         if (!username || !password) {
             return res.status(400).json({
                 success: false,
-                message: "Username y contraseña son requeridos."
+                message: "Username y contraseña son requeridos"
             });
         }
 
@@ -25,7 +25,7 @@ export default async function getOne(req: Request, res: Response, next: NextFunc
         if (!user || !user.password) {
             return res.status(401).json({
                 success: false,
-                message: 'Credenciales incorrectas.'
+                message: 'Credenciales incorrectas'
             });
         }
 
@@ -33,7 +33,7 @@ export default async function getOne(req: Request, res: Response, next: NextFunc
         if (!passwordIsOk) {
             return res.status(401).json({
                 success: false,
-                message: 'Credenciales incorrectas.'
+                message: 'Credenciales incorrectas'
             });
         }
 
@@ -51,7 +51,7 @@ export default async function getOne(req: Request, res: Response, next: NextFunc
 
         return res.status(200).json({
             success: true,
-            message: 'Inicio de sesión exitoso.',
+            message: 'Inicio de sesión exitoso',
             user: userData,
             token: token
         });

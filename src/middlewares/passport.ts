@@ -1,6 +1,6 @@
 import passport from "passport";
 import { Strategy as JwtStrategy, ExtractJwt, StrategyOptions, VerifiedCallback } from "passport-jwt";
-import { UserModel } from "../models/User.model.js"; // Asegúrate que la ruta y el nombre del modelo sean correctos
+import { UserModel } from "../models/User.model";
 
 // 1. (Seguridad) Verificar que la variable de entorno del secreto exista.
 if (!process.env.SECRET) {

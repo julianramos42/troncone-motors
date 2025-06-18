@@ -3,7 +3,7 @@ import { Router } from 'express';
 import validator from '../middlewares/validator';
 import carCreationSchema from '../schemas/createOneCar';
 // middlewares
-import passport from 'passport';
+import passport from '../middlewares/passport';
 import upload from '../middlewares/multer-uploads';
 // controllers
 import createOne from '../controllers/cars/createOne';

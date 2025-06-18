@@ -19,7 +19,7 @@ export default async function deleteOne(
         if (!deletedCar) {
             return res.status(404).json({
                 success: false,
-                message: "Auto no encontrado."
+                message: "Auto no encontrado"
             });
         }
 
@@ -43,7 +43,7 @@ export default async function deleteOne(
         // 3. Enviamos una respuesta de éxito.
         return res.status(200).json({
             success: true,
-            message: "Auto eliminado exitosamente."
+            message: "Auto eliminado"
         });
 
     } catch (error) {
