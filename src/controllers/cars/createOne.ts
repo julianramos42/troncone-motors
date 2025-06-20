@@ -41,6 +41,8 @@ export default async function createOne(
         const imagenesURLS = results.map((result) => result.secure_url);
         const publicIds = results.map((result) => result.public_id);
 
+        let cont = await CarModel.countDocuments();
+
         const newCarData = {
             nombre,
             marca,
@@ -53,7 +55,8 @@ export default async function createOne(
             transmision,
             puertas,
             imagenesURLS,
-            publicIds
+            publicIds,
+            cont: ++cont
         };
 
         await CarModel.create(newCarData);
