@@ -13,7 +13,7 @@ export interface ICar extends Document {
   puertas: number;
   imagenesURLS: string[];
   publicIds: string[];
-  cont: number;
+  slug: string;
   disponible: boolean;
 }
 
@@ -30,7 +30,7 @@ const carSchema = new Schema<ICar>({
   puertas: { type: Number, required: true },
   imagenesURLS: { type: [String], required: true },
   publicIds: { type: [String], required: true },
-  cont: { type: Number, required: true },
+  slug: { type: String, required: true },
   disponible: { type: Boolean, default: true },
 });
 

@@ -24,7 +24,7 @@ export default async function createOne(
 
         const files = req.files as Express.Multer.File[];
         if (!files || files.length === 0) {
-            return res.status(400).json({ message: "No se han subido imágenes" });
+            return res.status(400).json({ success: false, message: "No se han subido imágenes" });
         }
 
         const uploadPromises = files.map((file) => {
@@ -41,7 +41,7 @@ export default async function createOne(
         const imagenesURLS = results.map((result) => result.secure_url);
         const publicIds = results.map((result) => result.public_id);
 
-        let cont = await CarModel.countDocuments();
+        const slug = `${nombre}-${marca}-${modelo}-${anio}`.toLowerCase().replace(/\s+/g, '-');
 
         const newCarData = {
             nombre,
@@ -56,12 +56,13 @@ export default async function createOne(
             puertas,
             imagenesURLS,
             publicIds,
-            cont: ++cont
+            slug
         };
 
         await CarModel.create(newCarData);
 
         res.status(201).json({
+            success: true,
             message: "Producto creado"
         });
     } catch (err) {

@@ -12,7 +12,7 @@ export default async function getOne(
         const car = await CarModel.findById(id);
 
         if (!car) {
-            return res.status(404).json({ message: "Auto no encontrado" });
+            return res.status(404).json({ success: false, message: "Auto no encontrado" });
         }
 
         const {

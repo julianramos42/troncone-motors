@@ -10,7 +10,33 @@ export default async function updateOne(
 ): Promise<any> {
     try {
         const { id } = req.params;
-        const updateData: Partial<ICar> = { ...req.body };
+
+        const {
+            nombre,
+            marca,
+            modelo,
+            anio,
+            km,
+            motor,
+            color,
+            combustible,
+            transmision,
+            puertas,
+        } = req.body;
+        const slug = `${nombre}-${marca}-${modelo}-${anio}`.toLowerCase().replace(/\s+/g, '-');
+        const updateData: Partial<ICar> = {
+            nombre,
+            marca,
+            modelo,
+            anio,
+            km,
+            motor,
+            color,
+            combustible,
+            transmision,
+            puertas,
+            slug
+        };
 
         const files = req.files as Express.Multer.File[];
         let newImagesUploaded = false;
