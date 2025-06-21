@@ -6,7 +6,7 @@ export interface ICar extends Document {
   modelo: string;
   anio: number;
   km: number;
-  motor: number;
+  motor: string;
   color: string;
   combustible: string;
   transmision: string;
@@ -23,7 +23,7 @@ const carSchema = new Schema<ICar>({
   modelo: { type: String, required: true },
   anio: { type: Number, required: true },
   km: { type: Number, required: true },
-  motor: { type: Number, required: true },
+  motor: { type: String, required: true },
   color: { type: String, required: true },
   combustible: { type: String, required: true },
   transmision: { type: String, required: true },

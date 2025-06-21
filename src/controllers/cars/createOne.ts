@@ -41,7 +41,7 @@ export default async function createOne(
         const imagenesURLS = results.map((result) => result.secure_url);
         const publicIds = results.map((result) => result.public_id);
 
-        const slug = `${nombre}-${marca}-${modelo}-${anio}`.toLowerCase().replace(/\s+/g, '-');
+        const slug = `${nombre}-${anio}-${color}`.toLowerCase().replace(/\s+/g, '-');
 
         const newCarData = {
             nombre,
@@ -63,7 +63,7 @@ export default async function createOne(
 
         res.status(201).json({
             success: true,
-            message: "Producto creado"
+            message: "Auto creado"
         });
     } catch (err) {
         console.log(err);

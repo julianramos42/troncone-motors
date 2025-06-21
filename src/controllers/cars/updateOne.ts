@@ -23,7 +23,7 @@ export default async function updateOne(
             transmision,
             puertas,
         } = req.body;
-        const slug = `${nombre}-${marca}-${modelo}-${anio}`.toLowerCase().replace(/\s+/g, '-');
+        const slug = `${nombre}-${anio}-${color}`.toLowerCase().replace(/\s+/g, '-');
         const updateData: Partial<ICar> = {
             nombre,
             marca,
@@ -44,7 +44,6 @@ export default async function updateOne(
         // 1. Si hay nuevos archivos, súbelos a Cloudinary PRIMERO.
         if (files && files.length > 0) {
             newImagesUploaded = true;
-            
             const uploadPromises = files.map((file) => 
                 cloudinary.uploader.upload(file.path, { folder: "products" })
             );

@@ -54,7 +54,8 @@ export default async function getAll(
             CarModel.find(filter)
                 .sort(sortOptions)
                 .skip(skip)
-                .limit(limitNumber),
+                .limit(limitNumber)
+                .select('-publicIds -__v -_id'),
             CarModel.countDocuments(filter)
         ]);
 

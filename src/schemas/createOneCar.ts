@@ -41,9 +41,9 @@ const carCreationSchema = Joi.object({
     "any.required": "El campo 'km' es obligatorio.",
   }),
 
-  motor: Joi.number().positive().required().messages({
-      "number.base": "El motor debe ser un número (ej: 1.6).",
-      "number.positive": "El motor debe ser un número positivo.",
+  motor: Joi.string().min(3).max(10).required().messages({
+      "string.empty": "El campo 'motor' no puede estar vacío.",
+      "string.min": "El motor debe tener al menos 3 caracteres.",
       "any.required": "El campo 'motor' es obligatorio."
   }),
 

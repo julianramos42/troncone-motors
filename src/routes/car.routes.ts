@@ -6,6 +6,7 @@ import carCreationSchema from '../schemas/createOneCar';
 import passport from '../middlewares/passport';
 import upload from '../middlewares/multer-uploads';
 import isAdmin from '../middlewares/users/isAdmin';
+import carNameExists from '../middlewares/cars/carNameExists';
 // controllers
 import createOne from '../controllers/cars/createOne';
 import getOne from '../controllers/cars/getOne';
@@ -15,9 +16,9 @@ import updateOne from '../controllers/cars/updateOne';
 
 const router = Router();
 
-router.get('/:id', getOne);
+router.get('/:slug', getOne);
 router.get('/', getAll);
-router.post('/create', passport.authenticate('jwt',{session:false}), isAdmin, upload, validator(carCreationSchema), createOne);
+router.post('/create', passport.authenticate('jwt',{session:false}), isAdmin, upload, validator(carCreationSchema), carNameExists, createOne);
 router.put('/:id', passport.authenticate('jwt',{session:false}), isAdmin, upload, updateOne);
 router.delete('/:id', passport.authenticate('jwt',{session:false}), isAdmin, deleteOne);
 
