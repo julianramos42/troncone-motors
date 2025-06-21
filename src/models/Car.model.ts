@@ -15,6 +15,7 @@ export interface ICar extends Document {
   publicIds: string[];
   slug: string;
   disponible: boolean;
+  createdAt: Date;
 }
 
 const carSchema = new Schema<ICar>({
@@ -32,6 +33,7 @@ const carSchema = new Schema<ICar>({
   publicIds: { type: [String], required: true },
   slug: { type: String, required: true },
   disponible: { type: Boolean, default: true },
+  createdAt: { type: Date, default: Date.now }
 });
 
 export const CarModel = model<ICar>("Car", carSchema);
