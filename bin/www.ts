@@ -1,62 +1,33 @@
 import app from '../src/app';
-import debug from 'debug';
 import http from 'http';
 
-let port = normalizePort(process.env.PORT || '8080');
-app.set('port', port);
+// 1. OBTENER EL PUERTO NUMÉRICO
+// Usamos parseInt para asegurarnos de que `port` sea siempre un número.
+// Si process.env.PORT no existe o no es un número válido, usamos 8080.
+const port = parseInt(process.env.PORT || '8080', 10);
 
-let server = http.createServer(app);
+// 2. DEFINIR EL HOST
+// Para Render, DEBE ser '0.0.0.0'.
+const host = '0.0.0.0';
 
-server.listen(port, () => console.log("Server ready on port " + port));
-server.on('error', onError);
-server.on('listening', onListening);
+// 3. CREAR Y ARRANCAR EL SERVIDOR
+try {
+  // Creamos el servidor con la app de Express
+  const server = http.createServer(app);
 
-function normalizePort(val: string): string | number | false {
-  let port = parseInt(val, 10);
+  // Ponemos el servidor a escuchar en el HOST y PUERTO correctos.
+  // Ahora TypeScript está feliz porque `port` es un `number` y `host` es un `string`.
+  server.listen(port, host, () => {
+    console.log(`✅ Servidor listo y escuchando en http://${host}:${port}`);
+  });
 
-  if (isNaN(port)) {
-    return val;
-  }
+  // Manejador de errores del servidor para un mejor diagnóstico
+  server.on('error', (error) => {
+    console.error('❌ Error al iniciar el servidor:', error);
+    process.exit(1);
+  });
 
-  if (port >= 0) {
-    return port;
-  }
-
-  return false;
-}
-
-function onError(error: NodeJS.ErrnoException): void {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
-
-  let bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
-
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-}
-
-function onListening(): void {
-  let addr = server.address();
-
-  if (addr === null) {
-    return;
-  }
-
-  let bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+} catch (error) {
+  console.error('❌ Error catastrófico al configurar el servidor:', error);
+  process.exit(1);
 }
