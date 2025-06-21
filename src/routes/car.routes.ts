@@ -13,11 +13,9 @@ import getOne from '../controllers/cars/getOne';
 import getAll from '../controllers/cars/getAll';
 import deleteOne from '../controllers/cars/deleteOne';
 import updateOne from '../controllers/cars/updateOne';
-import threeLatests from '../controllers/cars/threeLatests'
 
 const router = Router();
 
-router.get('/latests', threeLatests);
 router.get('/:slug', getOne);
 router.get('/', getAll);
 router.post('/create', passport.authenticate('jwt',{session:false}), isAdmin, upload, validator(carCreationSchema), carNameExists, createOne);
