@@ -1,25 +1,18 @@
 {
   "compilerOptions": {
-    /* --- Configuración Fundamental --- */
     "target": "ES2020",
     "module": "CommonJS",
-    "lib": ["ES2020"],  /* <- LA CLAVE ESTÁ AQUÍ: Le decimos a TS que solo use las librerías de JS moderno, SIN el DOM del navegador. */
-
-    /* --- Estructura del Proyecto --- */
-    "outDir": "./dist",  /* Carpeta de salida para el código compilado (puedes cambiarla a "build" si prefieres) */
-    "rootDir": "./src",  /* Carpeta raíz de tu código TypeScript */
-
-    /* --- Interoperabilidad de Módulos --- */
+    "lib": ["ES2020"],
+    "outDir": "./dist",
     "moduleResolution": "node",
     "esModuleInterop": true,
-
-    /* --- Chequeo Estricto y Buenas Prácticas --- */
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-
-    /* --- Rendimiento y Comodidad --- */
-    "skipLibCheck": true /* Evita que TS revise los tipos de todas tus dependencias, acelerando la compilación. */
+    "skipLibCheck": true
   },
-  "include": ["src/**/*"],  /* Le decimos que compile todo lo que está dentro de la carpeta 'src' */
-  "exclude": ["node_modules"] /* Le decimos que ignore la carpeta de node_modules */
+  "include": [
+    "src/**/*",
+    "bin/**/*"
+  ],
+  "exclude": ["node_modules"]
 }
