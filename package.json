@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "ts-node-dev bin/www.ts",
     "build": "npx tsc",
-    "start": "node dist/bin/www.js",
+    "start": "node ..dist/bin/www.js",
     "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
